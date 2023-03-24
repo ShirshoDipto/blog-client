@@ -1,0 +1,77 @@
+.user {
+  display: flex;
+}
+
+.user-wrapper {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 30px;
+  padding: 20px;
+}
+
+.user-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.user-title-your-account {
+  font-family: "Lora", sans-serif;
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.user-title-delete {
+  color: rgb(197, 82, 82);
+  cursor: pointer;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-form > label {
+  font-size: 1.5rem;
+}
+
+.user-form > input {
+  color: gray;
+  border: none;
+  height: 30px;
+  border-bottom: 1px solid lightgray;
+}
+
+.user-form > input:focus {
+  outline: none;
+}
+
+.user-logout {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(206, 89, 54);
+  color: white;
+  cursor: pointer;
+}
+
+.user-logout:hover {
+  background-color: rgb(114, 24, 1);
+}
+
+.user-update {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(54, 206, 92);
+  color: white;
+  cursor: pointer;
+}
+
+.user-update:hover {
+  background-color: rgb(1, 114, 16);
+}

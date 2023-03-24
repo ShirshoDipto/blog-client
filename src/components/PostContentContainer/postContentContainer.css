@@ -1,0 +1,94 @@
+.post-content-container {
+  flex: 3;
+}
+
+.post-content-wrapper {
+  padding: 40px;
+}
+
+.post-content-img {
+  width: 100%;
+  height: 500px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.post-content-title-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.post-content-title {
+  font-family: 'Lora', serif;
+  text-align: center;
+}
+
+.post-content-edit {
+  display: flex;
+  cursor: pointer;
+  gap: 20px;
+  font-size: 20px;
+  padding-top: 10px;
+}
+
+#post-content-icon-edit {
+  color: teal;
+}
+
+#post-content-icon-delete {
+  color: tomato;
+}
+
+.post-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-family: "Varela Round", sans-serif;
+  color: #b39656;
+  margin-top: 15px;
+}
+
+.post-content-description {
+  line-height: 30px;
+  margin-top: 40px;
+  color: #666;
+}
+
+.post-content-description::first-letter {
+  margin-left: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.cm-like-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.cm-like-item {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cm-like-item-container {
+  display: flex;
+  gap: 5px;
+}
+
+.number {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.toggle-comments {
+  text-align: center;
+  width: 100%;
+  font-family: cursive;
+}
+
+.toggle-comments:hover {
+  color: blue;
+  cursor: pointer;
+}

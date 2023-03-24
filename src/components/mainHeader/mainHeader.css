@@ -1,6 +1,6 @@
 .main-header {
   margin-top: 60px;
-  /* border: thin solid red; */
+  position: relative;
 }
 
 .mh-titles {

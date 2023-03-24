@@ -1,0 +1,22 @@
+.reply {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border: thin solid rgb(219, 213, 213);
+}
+
+.reply-author {
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 600;
+}
+
+.reply-date {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.reply-content {
+  padding-left: 10px;
+}

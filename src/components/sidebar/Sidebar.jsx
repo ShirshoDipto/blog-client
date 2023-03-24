@@ -1,12 +1,20 @@
-import "./sidebar.css"
+import "./sidebar.css";
 
 export default function Sidebar() {
+  const root = process.env.REACT_APP_ROOT;
   return (
     <div className="sidebar">
       <div className="sidebar-item">
         <div className="sidebar-title">ABOUT ME</div>
-        <img className="sidebar-img" src="./assets/images/testProfile.jpg" alt="" />
-        <p className="sidebar-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus recusandae voluptatem officiis quis temporibus, nam </p>
+        <img
+          className="sidebar-img"
+          src={root + "/assets/images/testProfile.jpg"}
+          alt=""
+        />
+        <p className="sidebar-text">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Necessitatibus recusandae voluptatem officiis quis temporibus, nam{" "}
+        </p>
       </div>
       <div className="sidebar-item">
         <div className="sidebar-title">CATEGORIES</div>
@@ -28,5 +36,5 @@ export default function Sidebar() {
         </div>
       </div>
     </div>
-  )
+  );
 }

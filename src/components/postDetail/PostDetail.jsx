@@ -1,12 +1,12 @@
-import "./postDetail.css"
-import Sidebar from "../sidebar/Sidebar"
-import PostContent from "../PostContent/PostContent"
+import "./postDetail.css";
+import Sidebar from "../sidebar/Sidebar";
+import PostContent from "../PostContentContainer/PostContentContainer";
 
-export default function PostDetail() {
+export default function PostDetail({ currentUser }) {
   return (
     <div className="post-detail">
-      <PostContent />
+      <PostContent currentUser={currentUser} />
       <Sidebar />
     </div>
-  )
+  );
 }
