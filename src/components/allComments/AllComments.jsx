@@ -1,11 +1,15 @@
 import "./allComments.css";
 import Comment from "../comment/Comment";
-import { useEffect } from "react";
 
-export default function AllComments({ currentUser, allComments }) {
+export default function AllComments({ currentUser, post, allComments }) {
   const allCommentsArray = allComments.map((comment) => {
     return (
-      <Comment key={comment._id} currentUser={currentUser} comment={comment} />
+      <Comment
+        key={comment._id}
+        currentUser={currentUser}
+        post={post}
+        comment={comment}
+      />
     );
   });
 

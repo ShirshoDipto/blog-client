@@ -9,6 +9,12 @@
   font-style: italic;
 }
 
+.comment-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .comment-desc {
   padding: 15px;
 }
