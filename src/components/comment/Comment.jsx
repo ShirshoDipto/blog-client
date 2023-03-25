@@ -3,6 +3,7 @@ import Replies from "../replies/Replies";
 import CommentContent from "../commentContent/CommentContent";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import parse from "html-react-parser";
 
 export default function Comment({ currentUser, post, comment }) {
   const serverUri = process.env.REACT_APP_PROXY;
@@ -12,6 +13,26 @@ export default function Comment({ currentUser, post, comment }) {
     comment: comment,
     isLiked: {},
   });
+  const [isDelete, setIsDelete] = useState(false);
+
+  async function handleCommentDelete() {
+    const res = await fetch(
+      `${serverUri}/posts/${params.postId}/comments/${commentState.comment._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${currentUser.token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      console.log("Error occured.");
+      console.log(await res.json());
+    }
+
+    setIsDelete(true);
+  }
 
   async function deleteLike() {
     const res = await fetch(
@@ -57,7 +78,9 @@ export default function Comment({ currentUser, post, comment }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          updateType: "like",
+          isUpdateLikeReplies: true,
+          content: parse(commentState.comment.content),
+          numReplies: commentState.comment.numReplies,
           numLikes: commentState.comment.numLikes - 1,
         }),
       }
@@ -82,7 +105,9 @@ export default function Comment({ currentUser, post, comment }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          updateType: "like",
+          isUpdateLikeReplies: true,
+          content: parse(commentState.comment.content),
+          numReplies: commentState.comment.numReplies,
           numLikes: commentState.comment.numLikes + 1,
         }),
       }
@@ -111,7 +136,7 @@ export default function Comment({ currentUser, post, comment }) {
   }
 
   useEffect(() => {
-    async function fetchLikes() {
+    async function fetchLike() {
       if (!currentUser) {
         return;
       }
@@ -135,10 +160,14 @@ export default function Comment({ currentUser, post, comment }) {
       return setCommentState({ comment: comment, isLiked: {} });
     }
 
-    fetchLikes().catch((err) => {
+    fetchLike().catch((err) => {
       console.log(err);
     });
   }, [comment._id]);
+
+  if (isDelete) {
+    return null;
+  }
 
   return (
     <div className="comment">
@@ -147,6 +176,7 @@ export default function Comment({ currentUser, post, comment }) {
         comment={commentState.comment}
         isLiked={commentState.isLiked}
         handleLike={handleLike}
+        handleCommentDelete={handleCommentDelete}
       />
       <Replies currentUser={currentUser} />
     </div>

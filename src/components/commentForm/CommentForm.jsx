@@ -1,16 +1,22 @@
 import "./commentForm.css";
 
 export default function CommentForm({ currentUser, handleCommentSubmit }) {
+  function verifyUser() {
+    if (!currentUser) {
+      return alert("Log in to comment. ");
+    }
+  }
+
   return (
     <div className="comment-form">
       <form
-        method="POST"
+        onClick={verifyUser}
         className="comment-write-area"
         onSubmit={handleCommentSubmit}
       >
         <textarea
           className="comment-textarea"
-          name="comment"
+          name="content"
           id="comment"
           cols="30"
           rows="7"

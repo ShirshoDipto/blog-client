@@ -1,10 +1,14 @@
 import "./commentContent.css";
+import parse from "html-react-parser";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function CommentContent({
   currentUser,
   comment,
   isLiked,
   handleLike,
+  handleCommentDelete,
 }) {
   return (
     <div className="comment-content">
@@ -18,6 +22,7 @@ export default function CommentContent({
               className="post-content-icon fa-regular fa-pen-to-square"
             ></i>
             <i
+              onClick={handleCommentDelete}
               id="post-content-icon-delete"
               className="post-content-icon fa-regular fa-trash-can"
             ></i>
@@ -27,7 +32,7 @@ export default function CommentContent({
       <div className="comment-date">
         {new Date(comment.date).toDateString()}
       </div>
-      <div className="comment-desc">{comment.content}</div>
+      <div className="comment-desc">{parse(comment.content)}</div>
       <div className="comment-likes">
         {Object.keys(isLiked).length !== 0 ? (
           <i

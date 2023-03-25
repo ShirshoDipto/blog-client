@@ -54,8 +54,9 @@ export default function PostContentContainer({ currentUser }) {
     if (!res.ok) {
       return "Something bad happened. Error Ocurred. ";
     }
-    const like = await res.json();
-    return like;
+
+    const resData = await res.json();
+    return resData;
   }
 
   async function delLikeFromPost() {
@@ -66,8 +67,12 @@ export default function PostContentContainer({ currentUser }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        updateType: "like",
+        isLikeCommentUpdate: true,
+        title: postState.post.title,
+        content: postState.post.content,
+        isPublished: postState.post.isPublished,
         numLikes: postState.post.numLikes - 1,
+        numComments: postState.post.numComments,
       }),
     });
 
@@ -87,9 +92,14 @@ export default function PostContentContainer({ currentUser }) {
         Authorization: `Bearer ${currentUser.token}`,
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify({
-        updateType: "like",
+        isLikeCommentUpdate: true,
+        title: postState.post.title,
+        content: postState.post.content,
+        isPublished: postState.post.isPublished,
         numLikes: postState.post.numLikes + 1,
+        numComments: postState.post.numComments,
       }),
     });
 
@@ -130,7 +140,10 @@ export default function PostContentContainer({ currentUser }) {
         const theLike = await postsAndLikes[1].json();
 
         if (!theLike.error) {
-          return setPostState({ post: thePost.post, isLiked: theLike });
+          return setPostState({
+            post: thePost.post,
+            isLiked: theLike,
+          });
         }
         return setPostState({ post: thePost.post, isLiked: {} });
       } else {

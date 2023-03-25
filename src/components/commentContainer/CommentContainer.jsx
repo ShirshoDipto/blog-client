@@ -31,6 +31,7 @@ export default function CommentContainer({ currentUser, post }) {
           currentUser={currentUser}
           post={post}
           allComments={toggleComments.allComments}
+          setToggleComments={setToggleComments}
         />
       )}
     </div>
