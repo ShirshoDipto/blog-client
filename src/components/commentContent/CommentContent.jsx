@@ -1,8 +1,6 @@
 import "./commentContent.css";
 import parse from "html-react-parser";
 import CommentForm from "../commentForm/CommentForm";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
 
 export default function CommentContent({
   currentUser,
@@ -13,6 +11,7 @@ export default function CommentContent({
   handleLike,
   handleCommentDelete,
   handleCommentUpdate,
+  handleGetAllReplies,
 }) {
   let postContentEdit = null;
   if (currentUser && currentUser.user._id === comment.author.authorId) {
@@ -76,7 +75,9 @@ export default function CommentContent({
           ></i>
         )}
         <div className="number">{comment.numLikes}</div>
-        <div className="replies-text">Replies({comment.numReplies})</div>
+        <div className="replies-text" onClick={handleGetAllReplies}>
+          Replies({comment.numReplies})
+        </div>
       </div>
     </div>
   );

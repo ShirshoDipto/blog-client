@@ -39,11 +39,9 @@ export default function PostContentContainer({ currentUser }) {
     );
 
     if (!res.ok) {
-      if (res.status === 400) {
-        const errorMsg = await res.json();
-        return alert(errorMsg.error);
-      }
-      return "Something bad happened. Error Ocurred. ";
+      console.log("Something bad happened. Error Ocurred.");
+      console.log(await res.json());
+      return;
     }
 
     const resData = await res.json();
@@ -59,11 +57,9 @@ export default function PostContentContainer({ currentUser }) {
     });
 
     if (!res.ok) {
-      if (res.status === 400) {
-        const errorMsg = await res.json();
-        return alert(errorMsg.error);
-      }
-      return "Something bad happened. Error Ocurred. ";
+      console.log("Something bad happened. Error Ocurred.");
+      console.log(await res.json());
+      return;
     }
 
     const resData = await res.json();

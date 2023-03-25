@@ -7,35 +7,3 @@
   flex-direction: column;
   gap: 20px;
 }
-
-.all-replies {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.reply-form {
-  display: flex;
-}
-
-.reply-input {
-  padding: 10px;
-  border: none;
-  flex: 1;
-}
-
-.reply-input:focus {
-  outline: none;
-}
-
-.reply-button {
-  padding: 10px;
-  background-color: rgb(82, 82, 204);
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.reply-button:hover {
-  background-color: rgb(58, 58, 226);
-}

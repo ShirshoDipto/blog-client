@@ -1,27 +1,21 @@
-import Reply from "../reply/Reply";
 import "./replies.css";
+import ReplyForm from "../replyForm/ReplyForm";
+import AllReplies from "../allReplies/AllReplies";
 
-export default function Replies({ currentUser }) {
+export default function Replies({
+  currentUser,
+  comment,
+  allReplies,
+  handleAddReply,
+}) {
   return (
     <div className="replies">
-      <form method="POST" className="reply-form">
-        <input
-          type="text"
-          className="reply-input"
-          name="reply"
-          placeholder="Reply"
-        />
-        <button className="reply-button" type="submit">
-          Reply
-        </button>
-      </form>
-      <div className="all-replies">
-        <Reply currentUser={currentUser} />
-        <Reply currentUser={currentUser} />
-        <Reply currentUser={currentUser} />
-        <Reply currentUser={currentUser} />
-        <Reply currentUser={currentUser} />
-      </div>
+      <ReplyForm currentUser={currentUser} handleAddReply={handleAddReply} />
+      <AllReplies
+        currentUser={currentUser}
+        comment={comment}
+        allReplies={allReplies}
+      />
     </div>
   );
 }

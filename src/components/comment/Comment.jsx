@@ -15,6 +15,10 @@ export default function Comment({ currentUser, post, comment }) {
     isLiked: {},
     isUpdate: false,
   });
+  const [repliesState, setRepliesState] = useState({
+    toggleReply: false,
+    allReplies: [],
+  });
 
   async function handleCommentDelete() {
     const res = await fetch(
@@ -85,11 +89,9 @@ export default function Comment({ currentUser, post, comment }) {
     );
 
     if (!res.ok) {
-      if (res.status === 400) {
-        const errorMsg = await res.json();
-        return alert(errorMsg.error);
-      }
-      return "Something bad happened. Error Ocurred. ";
+      console.log("Something bad happened. Error Ocurred.");
+      console.log(await res.json());
+      return;
     }
 
     const like = await res.json();
@@ -108,11 +110,9 @@ export default function Comment({ currentUser, post, comment }) {
     );
 
     if (!res.ok) {
-      if (res.status === 400) {
-        const errorMsg = await res.json();
-        return alert(errorMsg.error);
-      }
-      return "Something bad happened. Error Ocurred. ";
+      console.log("Something bad happened. Error Ocurred.");
+      console.log(await res.json());
+      return;
     }
 
     const like = await res.json();
@@ -146,6 +146,30 @@ export default function Comment({ currentUser, post, comment }) {
       isLiked: commentState.isLiked,
       isUpdate: true,
     });
+  }
+
+  async function handleGetAllReplies() {
+    if (repliesState.toggleReply) {
+      return setRepliesState({ toggleReply: false, allReplies: [] });
+    }
+
+    console.log("Getting all replies. ");
+    const res = await fetch(
+      `${serverUri}/posts/${post._id}/comments/${commentState.comment._id}/replies`
+    );
+
+    const resData = await res.json();
+
+    if (!res.ok) {
+      console.log("Error Occured while fetching replies. ");
+      console.log(resData);
+    }
+
+    return setRepliesState({ toggleReply: true, allReplies: resData.replies });
+  }
+
+  async function handleAddReply(e) {
+    console.log("Add reply function is working. ");
   }
 
   useEffect(() => {
@@ -201,8 +225,16 @@ export default function Comment({ currentUser, post, comment }) {
         handleLike={handleLike}
         handleCommentDelete={handleCommentDelete}
         handleCommentUpdate={handleCommentUpdate}
+        handleGetAllReplies={handleGetAllReplies}
       />
-      <Replies currentUser={currentUser} />
+      {repliesState.toggleReply && (
+        <Replies
+          currentUser={currentUser}
+          comment={commentState.comment}
+          allReplies={repliesState.allReplies}
+          handleAddReply={handleAddReply}
+        />
+      )}
     </div>
   );
 }
