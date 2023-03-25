@@ -81,14 +81,3 @@
   font-size: 0.8rem;
   color: gray;
 }
-
-.toggle-comments {
-  text-align: center;
-  width: 100%;
-  font-family: cursive;
-}
-
-.toggle-comments:hover {
-  color: blue;
-  cursor: pointer;
-}

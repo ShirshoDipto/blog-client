@@ -29,7 +29,7 @@ export default function PostContentContainer({ currentUser }) {
 
   async function deleteLike() {
     const res = await fetch(
-      `${serverUri}/posts/${params.postId}/likes/${postState.isLiked.postLike._id}`,
+      `${serverUri}/posts/${params.postId}/likes/${postState.isLiked._id}`,
       {
         method: "DELETE",
         headers: {
@@ -39,8 +39,15 @@ export default function PostContentContainer({ currentUser }) {
     );
 
     if (!res.ok) {
+      if (res.status === 400) {
+        const errorMsg = await res.json();
+        return alert(errorMsg.error);
+      }
       return "Something bad happened. Error Ocurred. ";
     }
+
+    const resData = await res.json();
+    return resData;
   }
 
   async function addLike() {
@@ -52,6 +59,10 @@ export default function PostContentContainer({ currentUser }) {
     });
 
     if (!res.ok) {
+      if (res.status === 400) {
+        const errorMsg = await res.json();
+        return alert(errorMsg.error);
+      }
       return "Something bad happened. Error Ocurred. ";
     }
 
@@ -59,69 +70,16 @@ export default function PostContentContainer({ currentUser }) {
     return resData;
   }
 
-  async function delLikeFromPost() {
-    const res = await fetch(`${serverUri}/posts/${params.postId}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${currentUser.token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        isLikeCommentUpdate: true,
-        title: postState.post.title,
-        content: postState.post.content,
-        isPublished: postState.post.isPublished,
-        numLikes: postState.post.numLikes - 1,
-        numComments: postState.post.numComments,
-      }),
-    });
-
-    if (!res.ok) {
-      console.log(await res.json());
-      return "Something bad happened.";
-    }
-
-    const resData = await res.json();
-    return resData.post;
-  }
-
-  async function addLikeToPost() {
-    const res = await fetch(`${serverUri}/posts/${params.postId}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${currentUser.token}`,
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({
-        isLikeCommentUpdate: true,
-        title: postState.post.title,
-        content: postState.post.content,
-        isPublished: postState.post.isPublished,
-        numLikes: postState.post.numLikes + 1,
-        numComments: postState.post.numComments,
-      }),
-    });
-
-    if (!res.ok) {
-      console.log(await res.json());
-      return "Something bad happened.";
-    }
-
-    const resData = await res.json();
-    return resData.post;
-  }
-
   async function handleLike() {
     if (!currentUser) {
       return alert("Log in to Like. ");
     }
     if (Object.keys(postState.isLiked).length > 0) {
-      const responses = await Promise.all([deleteLike(), delLikeFromPost()]);
-      return setPostState({ post: responses[1], isLiked: {} });
+      const responses = await deleteLike();
+      setPostState({ post: responses.post, isLiked: {} });
     } else {
-      const responses = await Promise.all([addLike(), addLikeToPost()]);
-      return setPostState({ post: responses[1], isLiked: responses[0] });
+      const responses = await addLike();
+      setPostState({ post: responses.post, isLiked: responses.postLike });
     }
   }
 
@@ -142,7 +100,7 @@ export default function PostContentContainer({ currentUser }) {
         if (!theLike.error) {
           return setPostState({
             post: thePost.post,
-            isLiked: theLike,
+            isLiked: theLike.postLike,
           });
         }
         return setPostState({ post: thePost.post, isLiked: {} });

@@ -9,11 +9,12 @@ export default function Comment({ currentUser, post, comment }) {
   const serverUri = process.env.REACT_APP_PROXY;
   const params = useParams();
 
+  const [isDelete, setIsDelete] = useState(false);
   const [commentState, setCommentState] = useState({
     comment: comment,
     isLiked: {},
+    isUpdate: false,
   });
-  const [isDelete, setIsDelete] = useState(false);
 
   async function handleCommentDelete() {
     const res = await fetch(
@@ -34,9 +35,47 @@ export default function Comment({ currentUser, post, comment }) {
     setIsDelete(true);
   }
 
+  async function handleCommentUpdate(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
+
+    const res = await fetch(
+      `${serverUri}/posts/${params.postId}/comments/${commentState.comment._id}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${currentUser.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: formJson.content,
+          numLikes: commentState.comment.numLikes,
+          numReplies: commentState.comment.numReplies,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      console.log("Error Occured");
+      console.log(await res.json());
+      return;
+    }
+
+    const resData = await res.json();
+    const newComment = resData.comment;
+    setCommentState({
+      comment: newComment,
+      isLiked: commentState.isLiked,
+      isUpdate: false,
+    });
+    form.reset();
+  }
+
   async function deleteLike() {
     const res = await fetch(
-      `${serverUri}/posts/${params.postId}/comments/${commentState.comment._id}/likes/${commentState.isLiked.commentLike._id}`,
+      `${serverUri}/posts/${params.postId}/comments/${commentState.comment._id}/likes/${commentState.isLiked._id}`,
       {
         method: "DELETE",
         headers: {
@@ -46,8 +85,15 @@ export default function Comment({ currentUser, post, comment }) {
     );
 
     if (!res.ok) {
+      if (res.status === 400) {
+        const errorMsg = await res.json();
+        return alert(errorMsg.error);
+      }
       return "Something bad happened. Error Ocurred. ";
     }
+
+    const like = await res.json();
+    return like;
   }
 
   async function addLike() {
@@ -62,64 +108,15 @@ export default function Comment({ currentUser, post, comment }) {
     );
 
     if (!res.ok) {
+      if (res.status === 400) {
+        const errorMsg = await res.json();
+        return alert(errorMsg.error);
+      }
       return "Something bad happened. Error Ocurred. ";
     }
+
     const like = await res.json();
     return like;
-  }
-
-  async function delCommentLike() {
-    const res = await fetch(
-      `${serverUri}/posts/${params.postId}/comments/${commentState.comment._id}`,
-      {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${currentUser.token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          isUpdateLikeReplies: true,
-          content: parse(commentState.comment.content),
-          numReplies: commentState.comment.numReplies,
-          numLikes: commentState.comment.numLikes - 1,
-        }),
-      }
-    );
-
-    if (!res.ok) {
-      console.log(await res.json());
-      return "Something bad happened.";
-    }
-
-    const resData = await res.json();
-    return resData.comment;
-  }
-
-  async function addLikeToComment() {
-    const res = await fetch(
-      `${serverUri}/posts/${params.postId}/comments/${commentState.comment._id}`,
-      {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${currentUser.token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          isUpdateLikeReplies: true,
-          content: parse(commentState.comment.content),
-          numReplies: commentState.comment.numReplies,
-          numLikes: commentState.comment.numLikes + 1,
-        }),
-      }
-    );
-
-    if (!res.ok) {
-      console.log(await res.json());
-      return "Something bad happened.";
-    }
-
-    const resData = await res.json();
-    return resData.comment;
   }
 
   async function handleLike() {
@@ -127,12 +124,28 @@ export default function Comment({ currentUser, post, comment }) {
       return alert("Log in to Like. ");
     }
     if (Object.keys(commentState.isLiked).length > 0) {
-      const responses = await Promise.all([deleteLike(), delCommentLike()]);
-      return setCommentState({ comment: responses[1], isLiked: {} });
+      const responses = await deleteLike();
+      return setCommentState({
+        comment: responses.comment,
+        isLiked: {},
+        isUpdate: commentState.isUpdate,
+      });
     } else {
-      const responses = await Promise.all([addLike(), addLikeToComment()]);
-      return setCommentState({ comment: responses[1], isLiked: responses[0] });
+      const responses = await addLike();
+      return setCommentState({
+        comment: responses.comment,
+        isLiked: responses.commentLike,
+        isUpdate: commentState.isUpdate,
+      });
     }
+  }
+
+  function setIsUpdateToTrue() {
+    setCommentState({
+      comment: commentState.comment,
+      isLiked: commentState.isLiked,
+      isUpdate: true,
+    });
   }
 
   useEffect(() => {
@@ -153,11 +166,19 @@ export default function Comment({ currentUser, post, comment }) {
       const theLike = await res.json();
 
       if (!theLike.error) {
-        return setCommentState({ comment: comment, isLiked: theLike });
+        return setCommentState({
+          comment: comment,
+          isLiked: theLike.commentLike,
+          isUpdate: commentState.isUpdate,
+        });
       }
 
       console.log("like not found");
-      return setCommentState({ comment: comment, isLiked: {} });
+      return setCommentState({
+        comment: comment,
+        isLiked: {},
+        isUpdate: commentState.isUpdate,
+      });
     }
 
     fetchLike().catch((err) => {
@@ -175,8 +196,11 @@ export default function Comment({ currentUser, post, comment }) {
         currentUser={currentUser}
         comment={commentState.comment}
         isLiked={commentState.isLiked}
+        isUpdate={commentState.isUpdate}
+        setIsUpdateToTrue={setIsUpdateToTrue}
         handleLike={handleLike}
         handleCommentDelete={handleCommentDelete}
+        handleCommentUpdate={handleCommentUpdate}
       />
       <Replies currentUser={currentUser} />
     </div>

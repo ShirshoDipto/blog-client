@@ -1,6 +1,10 @@
 import "./commentForm.css";
 
-export default function CommentForm({ currentUser, handleCommentSubmit }) {
+export default function CommentForm({
+  currentUser,
+  handleCommentSubmit,
+  defaultValue,
+}) {
   function verifyUser() {
     if (!currentUser) {
       return alert("Log in to comment. ");
@@ -21,6 +25,7 @@ export default function CommentForm({ currentUser, handleCommentSubmit }) {
           cols="30"
           rows="7"
           placeholder="Write your comment..."
+          defaultValue={defaultValue}
         ></textarea>
         <div className="comment-submit-comtainer">
           <button className="comment-submit" type="submit">

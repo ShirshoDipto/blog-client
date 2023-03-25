@@ -1,0 +1,11 @@
+.toggle-comments {
+  text-align: center;
+  width: 100%;
+  font-family: cursive;
+  color: rgb(88, 88, 192);
+}
+
+.toggle-comments:hover {
+  color: blue;
+  cursor: pointer;
+}
