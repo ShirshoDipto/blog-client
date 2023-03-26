@@ -7,6 +7,11 @@
   border: thin solid rgb(219, 213, 213);
 }
 
+.reply-title {
+  display: flex;
+  justify-content: space-between;
+}
+
 .reply-author {
   font-family: 'Varela Round', sans-serif;
   font-weight: 600;

@@ -11,11 +11,11 @@ export default function CommentContent({
   handleLike,
   handleCommentDelete,
   handleCommentUpdate,
-  handleGetAllReplies,
+  toggleReplies,
 }) {
-  let postContentEdit = null;
+  let commentContentEdit = null;
   if (currentUser && currentUser.user._id === comment.author.authorId) {
-    postContentEdit = (
+    commentContentEdit = (
       <div className="post-content-edit">
         <i
           onClick={setIsUpdateToTrue}
@@ -30,7 +30,7 @@ export default function CommentContent({
       </div>
     );
   } else if (currentUser && currentUser.user.isBlogOwner) {
-    postContentEdit = (
+    commentContentEdit = (
       <div className="post-content-edit">
         <i
           onClick={handleCommentDelete}
@@ -45,7 +45,7 @@ export default function CommentContent({
     <div className="comment-content">
       <div className="comment-title">
         <div className="comment-author">{`${comment.author.firstName} ${comment.author.lastName}`}</div>
-        {postContentEdit}
+        {commentContentEdit}
       </div>
       <div className="comment-date">
         {new Date(comment.date).toDateString()}
@@ -75,7 +75,7 @@ export default function CommentContent({
           ></i>
         )}
         <div className="number">{comment.numLikes}</div>
-        <div className="replies-text" onClick={handleGetAllReplies}>
+        <div className="replies-text" onClick={toggleReplies}>
           Replies({comment.numReplies})
         </div>
       </div>

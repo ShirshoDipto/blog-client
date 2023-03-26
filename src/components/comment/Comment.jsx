@@ -3,7 +3,6 @@ import Replies from "../replies/Replies";
 import CommentContent from "../commentContent/CommentContent";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import parse from "html-react-parser";
 
 export default function Comment({ currentUser, post, comment }) {
   const serverUri = process.env.REACT_APP_PROXY;
@@ -15,10 +14,7 @@ export default function Comment({ currentUser, post, comment }) {
     isLiked: {},
     isUpdate: false,
   });
-  const [repliesState, setRepliesState] = useState({
-    toggleReply: false,
-    allReplies: [],
-  });
+  const [toggleReply, setToggleReply] = useState(false);
 
   async function handleCommentDelete() {
     const res = await fetch(
@@ -148,24 +144,11 @@ export default function Comment({ currentUser, post, comment }) {
     });
   }
 
-  async function handleGetAllReplies() {
-    if (repliesState.toggleReply) {
-      return setRepliesState({ toggleReply: false, allReplies: [] });
+  async function toggleReplies() {
+    if (toggleReply) {
+      return setToggleReply(false);
     }
-
-    console.log("Getting all replies. ");
-    const res = await fetch(
-      `${serverUri}/posts/${post._id}/comments/${commentState.comment._id}/replies`
-    );
-
-    const resData = await res.json();
-
-    if (!res.ok) {
-      console.log("Error Occured while fetching replies. ");
-      console.log(resData);
-    }
-
-    return setRepliesState({ toggleReply: true, allReplies: resData.replies });
+    return setToggleReply(true);
   }
 
   async function handleAddReply(e) {
@@ -225,15 +208,10 @@ export default function Comment({ currentUser, post, comment }) {
         handleLike={handleLike}
         handleCommentDelete={handleCommentDelete}
         handleCommentUpdate={handleCommentUpdate}
-        handleGetAllReplies={handleGetAllReplies}
+        toggleReplies={toggleReplies}
       />
-      {repliesState.toggleReply && (
-        <Replies
-          currentUser={currentUser}
-          comment={commentState.comment}
-          allReplies={repliesState.allReplies}
-          handleAddReply={handleAddReply}
-        />
+      {toggleReply && (
+        <Replies currentUser={currentUser} comment={commentState.comment} />
       )}
     </div>
   );
