@@ -1,7 +1,6 @@
 import "./postContentContainer.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import parse from "html-react-parser";
 import CommentContainer from "../commentContainer/CommentContainer";
 import PostContent from "../postContent/PostContent";
 
@@ -10,6 +9,7 @@ export default function PostContentContainer({ currentUser }) {
     title: "",
     content: "",
     date: "",
+    image: "",
     author: {
       authorId: "",
       firstName: "",
@@ -93,6 +93,9 @@ export default function PostContentContainer({ currentUser }) {
         ]);
         const thePost = await postsAndLikes[0].json();
         const theLike = await postsAndLikes[1].json();
+        if (thePost.error) {
+          return;
+        }
 
         if (!theLike.error) {
           return setPostState({
