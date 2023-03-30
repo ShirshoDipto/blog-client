@@ -1,9 +1,8 @@
 import "./header.css";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ currentUser }) {
   const root = process.env.REACT_APP_ROOT;
-  const user = localStorage.getItem("user");
 
   return (
     <div className="header">
@@ -29,8 +28,15 @@ export default function Header() {
               Contact
             </Link>
           </li>
+          {currentUser && currentUser.user.isBlogOwner ? (
+            <li className="header-item">
+              <Link to="/write" className="link">
+                Write
+              </Link>
+            </li>
+          ) : null}
           <li className="header-item">
-            {user && (
+            {currentUser && (
               <Link to="/logout" className="link">
                 Logout
               </Link>
@@ -39,7 +45,7 @@ export default function Header() {
         </ul>
       </div>
       <div className="header-right">
-        {user ? (
+        {currentUser ? (
           <Link className="link" to={"/user"}>
             <img
               className="header-image"

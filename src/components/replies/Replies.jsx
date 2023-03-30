@@ -8,7 +8,6 @@ export default function Replies({ currentUser, comment }) {
   const serverUri = process.env.REACT_APP_PROXY;
   const params = useParams();
   const [allReplies, setAllReplies] = useState([]);
-  const [isEmpty, setIsEmpty] = useState(false);
 
   async function fetchAllReplies() {
     const res = await fetch(
@@ -18,9 +17,9 @@ export default function Replies({ currentUser, comment }) {
     const resData = await res.json();
 
     if (!res.ok) {
-      setIsEmpty(true);
       console.log("Error Occured while fetching replies. ");
       console.log(resData);
+      return setAllReplies([]);
     }
 
     return setAllReplies(resData.replies);
@@ -70,7 +69,7 @@ export default function Replies({ currentUser, comment }) {
   return (
     <div className="replies">
       <ReplyForm currentUser={currentUser} handleAddReply={handleAddReply} />
-      {isEmpty ? (
+      {allReplies.length === 0 ? (
         <div>This comment doesn't have any reply yet. </div>
       ) : (
         <AllReplies

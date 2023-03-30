@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Posts({ posts, currentUser }) {
   const allPosts = posts.map((post) => {
     return (
-      <Link key={post._id} className="link" to={`/post/${post._id}`}>
+      <Link key={post._id} className="link" to={`/posts/${post._id}`}>
         <Post post={post} currentUser={currentUser} />
       </Link>
     );

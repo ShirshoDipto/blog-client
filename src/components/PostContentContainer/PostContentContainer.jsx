@@ -1,6 +1,7 @@
 import "./postContentContainer.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import parse from "html-react-parser";
 import CommentContainer from "../commentContainer/CommentContainer";
 import PostContent from "../postContent/PostContent";
 

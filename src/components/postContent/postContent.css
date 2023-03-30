@@ -1,0 +1,72 @@
+.confirmation-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  transform: scale(0);
+}
+
+.confirmation-modal.active {
+  transform: scale(1);
+}
+
+.loading {
+  text-align: center;
+}
+
+.cm-content {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 20px;
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.cm-text {
+  text-align: center;
+  font-family: "lora", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.cb-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirmation-yes, .confirmation-no {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 80px;
+  color: white;
+  cursor: pointer;
+}
+
+.confirmation-yes {
+  background-color: #ef4444;
+}
+
+.confirmation-yes:hover {
+  background-color: #e73131;
+}
+
+.confirmation-no {
+  background-color: #65a30d;
+}
+
+.confirmation-no:hover {
+  background-color: #609b0d;
+}

@@ -48,7 +48,7 @@ function App() {
             }
           />
           <Route
-            path="/post/:postId"
+            path="/posts/:postId"
             element={<PostDetail currentUser={currentUser} />}
           />
           <Route

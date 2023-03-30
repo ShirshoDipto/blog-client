@@ -6,7 +6,6 @@ export default function ReplyForm({
   handleAddReply,
   defaultValue,
 }) {
-  console.log(defaultValue);
   const [isLoading, setIsLoading] = useState(false);
   function verifyUser(e) {
     if (!currentUser) {

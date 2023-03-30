@@ -151,10 +151,6 @@ export default function Comment({ currentUser, post, comment }) {
     return setToggleReply(true);
   }
 
-  async function handleAddReply(e) {
-    console.log("Add reply function is working. ");
-  }
-
   useEffect(() => {
     async function fetchLike() {
       if (!currentUser) {
