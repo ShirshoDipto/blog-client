@@ -3,6 +3,12 @@ import Sidebar from "../sidebar/Sidebar";
 import "./user.css";
 
 export default function User({ currentUser, setCurrentUser }) {
+  async function handleLogout(e) {
+    e.preventDefault();
+    localStorage.removeItem("user");
+    window.location.replace("/");
+  }
+
   return (
     <div className="user">
       <div className="user-wrapper">
@@ -14,26 +20,27 @@ export default function User({ currentUser, setCurrentUser }) {
           <label>First Name</label>
           <input
             type="text"
-            placeholder={currentUser.user.firstName}
+            placeholder={currentUser && currentUser.user.firstName}
             name="firstName"
           />
           <label>Last Name</label>
           <input
             type="text"
-            placeholder={currentUser.user.lastName}
+            placeholder={currentUser && currentUser.user.lastName}
             name="lastName"
           />
           <label>Email</label>
           <input
             type="text"
-            placeholder={currentUser.user.email}
+            placeholder={currentUser && currentUser.user.email}
             name="email"
             disabled={true}
           />
-          <label>Password</label>
 
           <button className="user-update">Update Account</button>
-          <button className="user-logout">Log Out</button>
+          <button className="user-logout" onClick={handleLogout}>
+            Log Out
+          </button>
         </form>
       </div>
       <Sidebar />

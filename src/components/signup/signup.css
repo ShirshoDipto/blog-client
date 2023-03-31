@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: #0f172a;
+  background: url("/public/assets/images/login6.jpg");
+  background-size: cover;
 }
 
 .signup-form {
@@ -14,7 +15,7 @@
   flex-direction: column;
   gap: 20px;
   width: 300px;
-  color: white;
+  color: rgb(70, 68, 68);
 }
 
 .signup-formgroup{
@@ -25,13 +26,13 @@
 
 .signup-redirect {
   font-size: 0.8rem;
-  color: white;
+  color: rgb(70, 68, 68);
 }
 
 .signup-title {
   font-size: 2rem;
   text-align: center;
-  color: white;
+  color: rgb(70, 68, 68);
 }
 
 .signup-input {
@@ -46,7 +47,7 @@
   background-color: white;
   border: none;
   border-radius: 5px;
-  background-color: lightcoral;
+  background-color: #b39656;
   cursor: pointer;
 }
 

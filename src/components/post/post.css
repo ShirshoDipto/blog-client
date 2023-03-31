@@ -15,18 +15,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.post-cats {
-  display: flex;
-  gap: 20px;
-}
-
-.post-cat {
-  color: #be9656;
-  font-family: 'Varela Round', sans-serif;
-  font-size: 0.8rem;
-  line-height: 20px;
+  margin-bottom: 20px;
+  font-family: "Varela Round", sans-serif;
+  color: #b39656;
 }
 
 .post-title {

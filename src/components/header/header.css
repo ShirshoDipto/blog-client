@@ -5,8 +5,8 @@
   display: flex;
   align-items: center;
   font-family: 'Oswald', sans-serif;
-  background: white;
   z-index: 999;
+  background-color: white;
 }
 
 .header-left {
@@ -14,7 +14,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  font-family: 'Lora', sans-serif;
+}
+
+.logo {
+  /* background-color: #b39656; */
+  padding: 6px;
+  border-radius: 5px;
+  color: #b39656;
 }
 
 .header-right {
@@ -59,5 +68,9 @@
   font-size: 1.5rem;
 }
 
-
-
+.account {
+  font-size: 1.5rem;
+  border-radius: 50%;
+  background-color: rgb(228, 215, 215);
+  padding: 10px;
+}

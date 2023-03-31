@@ -27,7 +27,6 @@ export default function Main({ currentUser }) {
       <MainHeader />
       <div className="home">
         <Posts posts={posts} currentUser={currentUser} />
-        <Sidebar />
       </div>
     </div>
   );

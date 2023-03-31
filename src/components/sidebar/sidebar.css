@@ -24,7 +24,7 @@
   border-top: 1px solid #a7a4a4;
   border-bottom: 1px solid #a7a4a4;
   text-align: center;
-  width: 80%;
+  width: 90%;
   font-size: 1.2rem;
   font-weight: 600;
   line-height: 20px;
@@ -40,6 +40,7 @@
 .sidebar-text {
   padding-left: 30px;
   padding-right: 30px;
+  line-height: 1.5;
 }
 
 .sidebar-list {

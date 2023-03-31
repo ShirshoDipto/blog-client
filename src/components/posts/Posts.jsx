@@ -11,5 +11,10 @@ export default function Posts({ posts, currentUser }) {
     );
   });
 
-  return <div className="posts">{allPosts}</div>;
+  return (
+    <div className="allposts-container">
+      <div className="ac-title">Latest Posts</div>
+      <div className="posts">{allPosts}</div>
+    </div>
+  );
 }

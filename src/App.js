@@ -54,7 +54,12 @@ function App() {
           <Route
             path="/user"
             element={
-              <User currentUser={currentUser} setCurrentUser={setCurrentUser} />
+              currentUser && (
+                <User
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                />
+              )
             }
           />
         </Routes>

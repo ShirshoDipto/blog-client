@@ -5,10 +5,14 @@ export default function MainHeader() {
   return (
     <div className="main-header">
       <div className="mh-titles">
-        <span className="mh-title-sm">React & Logo</span>
-        <span className="mh-title-lg">Blog</span>
+        <span className="mh-title-lg">Welcome</span>
+        <span className="mh-title-sm">Explore my thoughts</span>
       </div>
-      <img src={root + "/assets/images/mhImg2.jpg"} alt="" className="mh-img" />
+      <img
+        src={root + "/assets/images/homepage_cropped.jpg"}
+        alt=""
+        className="mh-img"
+      />
     </div>
   );
 }

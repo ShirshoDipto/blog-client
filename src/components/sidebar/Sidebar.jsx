@@ -8,11 +8,11 @@ export default function Sidebar() {
         <div className="sidebar-title">ABOUT ME</div>
         <img
           className="sidebar-img"
-          src={root + "/assets/images/testProfile.jpg"}
+          src={root + "/assets/images/profilePic.jpeg"}
           alt=""
         />
         <p className="sidebar-text">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Shirsho Dipto dolor sit, amet consectetur adipisicing elit.
           Necessitatibus recusandae voluptatem officiis quis temporibus, nam{" "}
         </p>
       </div>
@@ -28,7 +28,7 @@ export default function Sidebar() {
         </ul>
       </div>
       <div className="sidebar-item">
-        <div className="sidebar-title">FOLLOW US</div>
+        <div className="sidebar-title">FOLLOW ME</div>
         <div className="sidebar-social">
           <i className="sidebar-icon fa-brands fa-square-facebook"></i>
           <i className="sidebar-icon fa-brands fa-square-twitter"></i>

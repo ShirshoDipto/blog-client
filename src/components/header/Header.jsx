@@ -7,9 +7,7 @@ export default function Header({ currentUser }) {
   return (
     <div className="header">
       <div className="header-left">
-        <i className="header-icon fa-brands fa-square-facebook"></i>
-        <i className="header-icon fa-brands fa-square-twitter"></i>
-        <i className="header-icon fa-brands fa-square-instagram"></i>
+        <div className="logo">Shirsho</div>
       </div>
       <div className="header-center">
         <ul className="header-list">
@@ -35,23 +33,12 @@ export default function Header({ currentUser }) {
               </Link>
             </li>
           ) : null}
-          <li className="header-item">
-            {currentUser && (
-              <Link to="/logout" className="link">
-                Logout
-              </Link>
-            )}
-          </li>
         </ul>
       </div>
       <div className="header-right">
         {currentUser ? (
           <Link className="link" to={"/user"}>
-            <img
-              className="header-image"
-              src={root + "/assets/images/testProfile.jpg"}
-              alt="Profile Pic"
-            />
+            <i className="account fa-solid fa-user"></i>
           </Link>
         ) : (
           <ul className="header-list">

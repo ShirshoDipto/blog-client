@@ -5,7 +5,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: #0f172a;
+  background: url("/public/assets/images/login6.jpg");
+  background-size: cover;
 }
 
 .login-form {
@@ -13,7 +14,7 @@
   flex-direction: column;
   gap: 20px;
   width: 300px;
-  color: white;
+  color: rgb(70, 68, 68);
 }
 
 .login-form-email, .login-form-password {
@@ -24,13 +25,13 @@
 
 .login-redirect {
   font-size: 0.8rem;
-  color: white;
+  color: rgb(70, 68, 68);
 }
 
 .login-title {
   font-size: 2rem;
   text-align: center;
-  color: white;
+  color: rgb(70, 68, 68);
 }
 
 .login-input {
@@ -45,7 +46,7 @@
   background-color: white;
   border: none;
   border-radius: 5px;
-  background-color: lightcoral;
+  background-color: #b39656;
   cursor: pointer;
 }
 

@@ -46,6 +46,7 @@ export default function TinyMce({
             "help",
             "wordcount",
             "image code",
+            "media",
           ],
           automatic_uploads: true,
           image_caption: true,
@@ -85,6 +86,8 @@ export default function TinyMce({
             };
             input.click();
           },
+          iframe_template_callback: (data) =>
+            `<iframe title="${data.title}" width="${data.width}" height="${data.height}" src="${data.source}"></iframe>`,
         }}
         onEditorChange={handleEditorChange}
         value={contentEditor}

@@ -86,17 +86,12 @@ export default function PostContent({ currentUser, postState, handleLike }) {
           </div>
         ) : null}
       </div>
-      <div className="post-info">
-        <span className="post-info-author">
-          Author:{" "}
-          <b>
-            {postState.post.author.firstName +
-              " " +
-              postState.post.author.lastName}
-          </b>
-        </span>
+      <div className="single-post-info">
         <span className="post-info-date">
           {new Date(postState.post.date).toDateString()}
+        </span>
+        <span className="post-info-author">
+          Author: <b>Shirsho Dipto</b>
         </span>
       </div>
       <div className="post-content-description">
