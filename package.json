@@ -1,7 +1,6 @@
 {
   "name": "blog-client",
   "version": "0.1.0",
-  "homepage": "https://shirshodipto.github.io/blog-client",
   "private": true,
   "dependencies": {
     "@mdi/js": "^7.2.96",
