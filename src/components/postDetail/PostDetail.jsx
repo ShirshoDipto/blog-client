@@ -1,12 +1,14 @@
 import "./postDetail.css";
-import Sidebar from "../sidebar/Sidebar";
+import Sidebar from "../about/About";
 import PostContent from "../PostContentContainer/PostContentContainer";
+import Footer from "../footer/Footer";
 
 export default function PostDetail({ currentUser }) {
   return (
-    <div className="post-detail">
+    <div className="post-detail-wrapper">
       <PostContent currentUser={currentUser} />
-      <Sidebar />
+      <div className="post-detail">{/* <Sidebar /> */}</div>
+      <Footer />
     </div>
   );
 }

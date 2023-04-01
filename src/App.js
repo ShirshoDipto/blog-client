@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import User from "./components/user/User";
 import { useState } from "react";
 import ScrollToTop from "./ScrollToTop";
+import About from "./components/about/About";
 
 function App() {
   const user = localStorage.getItem("user");
@@ -61,6 +62,10 @@ function App() {
                 />
               )
             }
+          />
+          <Route
+            path="/about"
+            element={currentUser && <About currentUser={currentUser} />}
           />
         </Routes>
       </div>

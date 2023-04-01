@@ -20,7 +20,6 @@
 }
 
 .logo {
-  /* background-color: #b39656; */
   padding: 6px;
   border-radius: 5px;
   color: #b39656;
@@ -58,7 +57,7 @@
 }
 
 .header-item {
-  font-weight: 300;
+  font-weight: 200;
   font-size: 1.3rem;
   cursor: pointer;
 }

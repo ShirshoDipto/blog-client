@@ -6,7 +6,7 @@ export default function MainHeader() {
     <div className="main-header">
       <div className="mh-titles">
         <span className="mh-title-lg">Welcome</span>
-        <span className="mh-title-sm">Explore my thoughts</span>
+        <span className="mh-title-sm">to my thoughts, stories, and ideas.</span>
       </div>
       <img
         src={root + "/assets/images/homepage_cropped.jpg"}

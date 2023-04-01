@@ -1,3 +1,5 @@
-.post-detail {
+.post-detail-wrapper {
   display: flex;
+  flex-direction: column;
+  min-height: calc((100vh - 50px));
 }

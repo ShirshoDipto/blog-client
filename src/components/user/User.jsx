@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Sidebar from "../sidebar/Sidebar";
+import Sidebar from "../about/About";
 import "./user.css";
 
 export default function User({ currentUser, setCurrentUser }) {
@@ -43,7 +43,7 @@ export default function User({ currentUser, setCurrentUser }) {
           </button>
         </form>
       </div>
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   );
 }

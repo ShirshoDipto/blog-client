@@ -4,6 +4,7 @@
   flex-direction: column;
   padding: 10px;
   border: thin solid rgb(219, 213, 213);
+  border-radius: 5px;
 }
 
 .reply-title {
