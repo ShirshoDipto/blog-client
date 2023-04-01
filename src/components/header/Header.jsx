@@ -2,8 +2,6 @@ import "./header.css";
 import { Link } from "react-router-dom";
 
 export default function Header({ currentUser }) {
-  const root = process.env.REACT_APP_ROOT;
-
   return (
     <div className="header">
       <div className="header-left">

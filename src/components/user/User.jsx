@@ -1,5 +1,3 @@
-import { useState } from "react";
-import Sidebar from "../about/About";
 import "./user.css";
 
 export default function User({ currentUser, setCurrentUser }) {

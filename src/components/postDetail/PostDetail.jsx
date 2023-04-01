@@ -1,5 +1,4 @@
 import "./postDetail.css";
-import Sidebar from "../about/About";
 import PostContent from "../PostContentContainer/PostContentContainer";
 import Footer from "../footer/Footer";
 

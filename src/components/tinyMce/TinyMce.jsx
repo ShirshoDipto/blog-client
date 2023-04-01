@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { useState } from "react";
-import parse from "html-react-parser";
 import "./tinyMce.css";
 
 export default function TinyMce({

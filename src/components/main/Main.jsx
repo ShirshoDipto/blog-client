@@ -1,6 +1,5 @@
 import "./main.css";
 import MainHeader from "../mainHeader/MainHeader";
-import Sidebar from "../about/About";
 import Posts from "../posts/Posts";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";

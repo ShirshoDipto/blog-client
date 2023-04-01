@@ -8,7 +8,6 @@ export default function Update({ currentUser, post }) {
   const [title, setTitle] = useState(post.title);
 
   const serverRoot = process.env.REACT_APP_SERVERROOT;
-  const root = process.env.REACT_APP_ROOT;
 
   async function handleEditorChange(content, editor) {
     setContentEditor(content);

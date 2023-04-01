@@ -15,7 +15,6 @@ export default function Write({ currentUser }) {
 
   async function handleWriteSubmit(e) {
     e.preventDefault();
-    const form = e.target;
     let formData = new FormData();
 
     if (image) {
