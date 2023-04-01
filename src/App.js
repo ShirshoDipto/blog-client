@@ -10,6 +10,7 @@ import User from "./components/user/User";
 import { useState } from "react";
 import ScrollToTop from "./ScrollToTop";
 import About from "./components/about/About";
+import Contact from "./components/contact/Contact";
 
 function App() {
   const user = localStorage.getItem("user");
@@ -66,6 +67,10 @@ function App() {
           <Route
             path="/about"
             element={currentUser && <About currentUser={currentUser} />}
+          />
+          <Route
+            path="/contact"
+            element={currentUser && <Contact currentUser={currentUser} />}
           />
         </Routes>
       </div>

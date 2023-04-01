@@ -1,0 +1,126 @@
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 50px);
+  background-color: rgb(240, 245, 245);
+}
+
+.contact-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-header img {
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.contact-header {
+  position: relative;
+  width: 100%;
+}
+
+.contact-title {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "lora" sans-serif;
+  font-weight: 300;
+}
+
+.contact-title span {
+  border-top: thin solid black;
+  border-bottom: thin solid black;
+  padding: 5px;
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: url("/public/assets/images/login6.jpg");
+  background-size: cover;
+}
+
+.contact-form-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  gap: 20px;
+  width: 500px;
+  color: rgb(70, 68, 68);
+}
+
+.contact-formgroup{
+  display: flex;
+  gap: 7px;
+}
+
+.contact-redirect {
+  font-size: 0.8rem;
+  color: rgb(70, 68, 68);
+}
+
+.contact-title {
+  font-size: 2rem;
+  text-align: center;
+  color: rgb(70, 68, 68);
+}
+
+.contact-input {
+  padding: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  font-family: "lora", sans-serif;
+}
+
+.contact-form textarea {
+  font-family: "lora", sans-serif;
+}
+
+.contact-submit {
+  padding: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: #b39656;
+  cursor: pointer;
+}
+
+.contact-password-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.anchor-like {
+  color: #0d9488;
+  font-size: 0.8rem;
+}
+
+.error-msg {
+  font-size: 0.7rem;
+  color: red;
+}
+
+.user-exist-div {
+  color: red;
+}
