@@ -33,7 +33,7 @@ export default function Register({ setCurrentUser }) {
       return setErrors(resData.errors);
     } else {
       localStorage.setItem("user", JSON.stringify(resData));
-      setCurrentUser(resData.user);
+      window.location.replace("/");
     }
   }
 

@@ -41,7 +41,7 @@ export default function Login({ setCurrentUser }) {
     } else {
       resData = await res.json();
       localStorage.setItem("user", JSON.stringify(resData));
-      setCurrentUser(resData);
+      window.location.replace("/");
     }
   }
 
