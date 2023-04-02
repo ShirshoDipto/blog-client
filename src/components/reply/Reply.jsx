@@ -4,7 +4,7 @@ import ReplyForm from "../replyForm/ReplyForm";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function Reply({ currentUser, comment, reply }) {
+export default function Reply({ currentUser, comment, reply, updateReplyNum }) {
   const serverUri = process.env.REACT_APP_PROXY;
   const params = useParams();
   const [replyState, setReplyState] = useState({
@@ -61,7 +61,10 @@ export default function Reply({ currentUser, comment, reply }) {
       console.log("Error Occured. ");
       console.log(await res.json());
     }
+
+    const resData = await res.json();
     setIsDeleting(true);
+    updateReplyNum(resData.comment);
   }
 
   async function handleReplyUpdate(e) {

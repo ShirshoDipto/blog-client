@@ -1,7 +1,11 @@
 import "./allComments.css";
 import Comment from "../comment/Comment";
 
-export default function AllComments({ currentUser, post, allComments }) {
+export default function AllComments({
+  currentUser,
+  updateCommentNum,
+  allComments,
+}) {
   if (!allComments) {
     return (
       <div className="all-comments">
@@ -14,7 +18,7 @@ export default function AllComments({ currentUser, post, allComments }) {
       <Comment
         key={comment._id}
         currentUser={currentUser}
-        post={post}
+        updateCommentNum={updateCommentNum}
         comment={comment}
       />
     );

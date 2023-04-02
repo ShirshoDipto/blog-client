@@ -4,7 +4,7 @@ import AllReplies from "../allReplies/AllReplies";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function Replies({ currentUser, comment }) {
+export default function Replies({ currentUser, comment, updateReplyNum }) {
   const serverUri = process.env.REACT_APP_PROXY;
   const params = useParams();
   const [allReplies, setAllReplies] = useState([]);
@@ -25,7 +25,7 @@ export default function Replies({ currentUser, comment }) {
     return setAllReplies(resData.replies);
   }
 
-  async function createReply(formJson) {
+  async function createReplyInDatabase(formJson) {
     const res = await fetch(
       `${serverUri}/posts/${params.postId}/comments/${comment._id}/replies`,
       {
@@ -44,6 +44,9 @@ export default function Replies({ currentUser, comment }) {
       console.log("Error occured. ");
       console.log(await res.json());
     }
+
+    const resData = await res.json();
+    return resData.comment;
   }
 
   async function handleAddReply(e) {
@@ -54,8 +57,9 @@ export default function Replies({ currentUser, comment }) {
     const form = e.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-    await createReply(formJson);
+    const updatedComment = await createReplyInDatabase(formJson);
     await fetchAllReplies();
+    updateReplyNum(updatedComment);
 
     form.reset();
   }
@@ -76,6 +80,7 @@ export default function Replies({ currentUser, comment }) {
           currentUser={currentUser}
           comment={comment}
           allReplies={allReplies}
+          updateReplyNum={updateReplyNum}
         />
       )}
     </div>

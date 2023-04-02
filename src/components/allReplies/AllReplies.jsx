@@ -1,7 +1,12 @@
 import "./allReplies.css";
 import Reply from "../reply/Reply";
 
-export default function AllReplies({ currentUser, comment, allReplies }) {
+export default function AllReplies({
+  currentUser,
+  comment,
+  allReplies,
+  updateReplyNum,
+}) {
   const replies = allReplies.map((reply) => {
     return (
       <Reply
@@ -9,6 +14,7 @@ export default function AllReplies({ currentUser, comment, allReplies }) {
         currentUser={currentUser}
         comment={comment}
         reply={reply}
+        updateReplyNum={updateReplyNum}
       />
     );
   });

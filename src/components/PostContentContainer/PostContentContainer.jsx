@@ -28,6 +28,10 @@ export default function PostContentContainer({ currentUser }) {
 
   const serverUri = process.env.REACT_APP_PROXY;
 
+  async function updateCommentNum(updatedPost) {
+    setPostState({ post: updatedPost, isLiked: postState.isLiked });
+  }
+
   async function deleteLike() {
     const res = await fetch(
       `${serverUri}/posts/${params.postId}/likes/${postState.isLiked._id}`,
@@ -124,7 +128,10 @@ export default function PostContentContainer({ currentUser }) {
           postState={postState}
           handleLike={handleLike}
         />
-        <CommentContainer currentUser={currentUser} post={postState.post} />
+        <CommentContainer
+          currentUser={currentUser}
+          updateCommentNum={updateCommentNum}
+        />
       </div>
     </div>
   );

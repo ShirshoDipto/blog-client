@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 export default function Comments({
   currentUser,
-  post,
+  updateCommentNum,
   allComments,
   setToggleComments,
 }) {
@@ -37,11 +37,13 @@ export default function Comments({
       return;
     }
 
+    const resData = await res.json();
     const res2 = await fetch(`${serverUri}/posts/${params.postId}/comments`);
     const res2Data = await res2.json();
     const comments = res2Data.comments;
     setToggleComments({ text: "Hide Comments", allComments: comments });
-    e.target.reset();
+    updateCommentNum(resData.post);
+    form.reset();
   }
 
   return (
@@ -53,7 +55,7 @@ export default function Comments({
 
       <AllComments
         currentUser={currentUser}
-        post={post}
+        updateCommentNum={updateCommentNum}
         allComments={allComments}
       />
     </div>

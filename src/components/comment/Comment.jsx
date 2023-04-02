@@ -1,10 +1,10 @@
 import "./comment.css";
 import Replies from "../replies/Replies";
 import CommentContent from "../commentContent/CommentContent";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function Comment({ currentUser, post, comment }) {
+export default function Comment({ currentUser, updateCommentNum, comment }) {
   const serverUri = process.env.REACT_APP_PROXY;
   const params = useParams();
 
@@ -15,6 +15,15 @@ export default function Comment({ currentUser, post, comment }) {
     isUpdate: false,
   });
   const [toggleReply, setToggleReply] = useState(false);
+  const commentRef = useRef(commentState.comment);
+
+  async function updateReplyNum(updatedComment) {
+    setCommentState({
+      comment: updatedComment,
+      isLiked: commentState.isLiked,
+      isUpdate: commentState.isUpdate,
+    });
+  }
 
   async function handleCommentDelete() {
     const res = await fetch(
@@ -32,7 +41,9 @@ export default function Comment({ currentUser, post, comment }) {
       console.log(await res.json());
     }
 
+    const resData = await res.json();
     setIsDelete(true);
+    updateCommentNum(resData.post);
   }
 
   async function handleCommentUpdate(e) {
@@ -158,7 +169,7 @@ export default function Comment({ currentUser, post, comment }) {
       }
 
       const res = await fetch(
-        `${serverUri}/posts/${post._id}/comments/${comment._id}/likes`,
+        `${serverUri}/posts/${params.postId}/comments/${comment._id}/likes`,
         {
           headers: {
             Authorization: `Bearer ${currentUser.token}`,
@@ -207,7 +218,11 @@ export default function Comment({ currentUser, post, comment }) {
         toggleReplies={toggleReplies}
       />
       {toggleReply && (
-        <Replies currentUser={currentUser} comment={commentState.comment} />
+        <Replies
+          currentUser={currentUser}
+          comment={commentRef.current}
+          updateReplyNum={updateReplyNum}
+        />
       )}
     </div>
   );
