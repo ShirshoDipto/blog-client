@@ -50,6 +50,11 @@ export default function PostContentContainer({ currentUser }) {
     }
 
     const resData = await res.json();
+    if (resData.success) {
+      let newPost = postState.post;
+      newPost.numLikes -= 1;
+      setPostState({ post: newPost, isLiked: {} });
+    }
     return resData;
   }
 
@@ -68,6 +73,11 @@ export default function PostContentContainer({ currentUser }) {
     }
 
     const resData = await res.json();
+    if (resData.success) {
+      let newPost = postState.post;
+      newPost.numLikes += 1;
+      setPostState({ post: newPost, isLiked: resData.postLike });
+    }
     return resData;
   }
 
@@ -77,10 +87,10 @@ export default function PostContentContainer({ currentUser }) {
     }
     if (Object.keys(postState.isLiked).length > 0) {
       const responses = await deleteLike();
-      setPostState({ post: responses.post, isLiked: {} });
+      // setPostState({ post: responses.post, isLiked: {} });
     } else {
       const responses = await addLike();
-      setPostState({ post: responses.post, isLiked: responses.postLike });
+      // setPostState({ post: responses.post, isLiked: responses.postLike });
     }
   }
 
