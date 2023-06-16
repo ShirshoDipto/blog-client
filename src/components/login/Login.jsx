@@ -2,7 +2,7 @@ import "./login.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function Login({ setCurrentUser }) {
+export default function Login() {
   const serverUri = process.env.REACT_APP_PROXY;
   const [errors, setErrors] = useState([]);
   const [userExistError, setUserExistError] = useState("");

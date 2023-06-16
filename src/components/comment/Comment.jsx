@@ -187,7 +187,6 @@ export default function Comment({ currentUser, updateCommentNum, comment }) {
         });
       }
 
-      console.log("like not found");
       return setCommentState({
         comment: comment,
         isLiked: {},
