@@ -19,7 +19,11 @@ There will be a gif here.
 1. Multer
 1. Express Validator
 
+and more
+
 ## Features
+
+The following are the main features of this app.
 
 ### 1. Authentication
 
@@ -31,7 +35,7 @@ There will be a gif here.
 
 - CRUD for posts, comments, likes
 
-### TinyMCE Advance features
+### 3. TinyMCE Advance features
 
 - Include images with posts
 - Add tables to posts' contents
@@ -41,7 +45,7 @@ May be a gif here.
 
 ## Running Locally
 
-To run the API Repository locally, follow the instructions given in the [API Repository](https://github.com/ShirshoDipto/blog-api)
+To run the API locally, follow the instructions given in the [API Repository](https://github.com/ShirshoDipto/blog-api)
 
 ### Clone Repository
 
@@ -56,7 +60,7 @@ cd blog-client
 ### Set up local variables
 
 ```
-TINY_KEY = <A API key optained from TinyMCE account>
+TINY_KEY = <An API key optained from TinyMCE account>
 
 REACT_APP_ROOT = <Address of the client, e.g http://localhost:3000>
 
