@@ -4,8 +4,6 @@
 
 [API Repository](https://github.com/ShirshoDipto/blog-api)
 
-There will be a gif here.
-
 ## Technologies used
 
 1. MongoDB (with mongoose)
@@ -31,17 +29,17 @@ The following are the main features of this app.
 - Login and Signup form validation using express validator.
 - Logout
 
+![Authentication](./public/assets/gifs/blogAuth.webp)
+
 ### 2. Posts, Comments, Likes
 
-- CRUD for posts, comments, likes
+- CRUD for posts, comments, and likes
 
 ### 3. TinyMCE Advance features
 
 - Include images with posts
 - Add tables to posts' contents
 - Add iframes with posts
-
-May be a gif here.
 
 ## Running Locally
 
