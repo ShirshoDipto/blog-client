@@ -35,11 +35,15 @@ The following are the main features of this app.
 
 - CRUD for posts, comments, and likes
 
-### 3. TinyMCE Advance features
+![Authentication](./public/assets/gifs/blogCRUD.webp)
+
+### 3. TinyMCE advance features
 
 - Include images with posts
 - Add tables to posts' contents
 - Add iframes with posts
+
+![Authentication](./public/assets/gifs/blogTinyMCE.webp)
 
 ## Running Locally
 
