@@ -4,8 +4,6 @@
 
 [API Repository](https://github.com/ShirshoDipto/blog-api)
 
-There will be a gif here.
-
 ## Technologies used
 
 1. MongoDB (with mongoose)
