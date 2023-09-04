@@ -121,7 +121,7 @@ export default function Register({ setCurrentUser }) {
         </button>
       </form>
       <div className="signup-redirect">
-        Already have an account?{" "}
+        <span className="signup-redirect-text">Already have an account? </span>
         <Link className="link anchor-like" to="/login">
           Log In
         </Link>
