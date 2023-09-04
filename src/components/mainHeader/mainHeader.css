@@ -6,13 +6,11 @@
 .mh-titles {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   font-family: 'Lora', serif;
   color: rgb(70, 68, 68);
   position: absolute;
   top: 20%;
   left: 10%;
-  /* width: 100%; */
 }
 
 .mh-title-lg {
@@ -29,4 +27,14 @@
   height: 700px;
   width: 100%;
   object-fit: cover;
+}
+
+@media (max-width: 500px) {
+  .mh-title-lg {
+    font-size: 3rem;
+  }
+  
+  .mh-title-sm {
+    font-size: 1rem;
+  }
 }
