@@ -25,6 +25,10 @@
   font-weight: 300;
 }
 
+.fs-name {
+  min-width: 60px;
+}
+
 .footer-logo {
   flex: 1;
   display: flex;
@@ -42,6 +46,7 @@
   align-items: center;
   font-family: 'Lora', sans-serif;
   font-weight: 500;
+  min-width: 220px;
 }
 
 .footer-hr {
@@ -71,4 +76,29 @@
 .copyrights-item {
   cursor: pointer;
   font-size: 0.6rem;
+}
+
+@media (max-width: 700px) {
+  .footer-bar {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-social,
+  .footer-logo,
+  .footer-moto {
+    flex: 0 0 0;
+    width: 100%;
+  }
+
+  .footer-moto,
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-cats {
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 15px;
+  }
 }
