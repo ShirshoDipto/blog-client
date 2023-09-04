@@ -27,3 +27,9 @@
   line-height: 20px;
   color: #222;
 }
+
+@media (max-width: 500px) {
+  .allposts-container{
+    margin: 1rem;
+  }
+}
