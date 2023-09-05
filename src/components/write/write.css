@@ -68,3 +68,33 @@
 .tox-promotion, .tox-statusbar__branding {
   display: none;
 }
+
+@media (max-width: 800px) {
+  .write {
+    padding: 20px;
+  }
+
+  .write-img {
+    width: 80%;
+    height: 320px;
+  }
+
+  .write-form {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .write {
+    padding: 10px;
+  }
+
+  .write-img {
+    width: 100%;
+    height: 200px;
+  }
+
+  .write-form {
+    width: 100%;
+  }
+}
