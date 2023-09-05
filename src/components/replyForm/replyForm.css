@@ -5,6 +5,7 @@
 .reply-input {
   padding: 10px;
   border: none;
+  width: 20px;
   flex: 1;
   border-radius: 7px 0px 0px 7px;
 }
@@ -24,4 +25,8 @@
 
 .reply-button:hover {
   background-color: rgb(58, 58, 226);
+}
+
+@media (max-width: 500px) {
+
 }

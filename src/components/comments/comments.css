@@ -39,3 +39,9 @@
 .comment-submit:hover {
   background-color: rgb(58, 58, 226);
 }
+
+@media (max-width: 500px) {
+  .comments {
+    padding: 10px;
+  }
+}
