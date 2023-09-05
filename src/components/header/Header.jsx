@@ -1,36 +1,96 @@
+import { useState } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 export default function Header({ currentUser }) {
+  const [dropdownStatus, setDropdownStatus] = useState(false);
+  const dropdown = useRef();
+  const dropdownTrigger = useRef();
+
+  const handleDropdownTrigger = () => {
+    setDropdownStatus(!dropdownStatus);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        dropdown.current &&
+        !dropdown.current.contains(e.target) &&
+        !dropdownTrigger.current.contains(e.target)
+      ) {
+        setDropdownStatus(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="header">
       <div className="header-left">
-        <div className="logo">Shirsho</div>
+        <div className="logo">
+          <Link to="/" className="link">
+            Shirsho
+          </Link>
+        </div>
       </div>
       <div className="header-center">
-        <ul className="header-list">
+        <i
+          className={`fa-regular fa-square-caret-down dropdown-trigger ${
+            dropdownStatus && "rotate180"
+          }`}
+          ref={dropdownTrigger}
+          onClick={handleDropdownTrigger}
+        ></i>
+        <ul
+          className="header-list"
+          ref={dropdown}
+          id={dropdownStatus && "show-dropdown"}
+        >
           <li className="header-item">
-            <Link to="/" className="link">
+            <Link
+              to="/"
+              className="link"
+              onClick={() => setDropdownStatus(false)}
+            >
               Home
             </Link>
           </li>
           <li className="header-item">
-            <Link to="/about" className="link">
+            <Link
+              to="/about"
+              className="link"
+              onClick={() => setDropdownStatus(false)}
+            >
               About
             </Link>
           </li>
           <li className="header-item">
-            <Link to="/contact" className="link">
+            <Link
+              to="/contact"
+              className="link"
+              onClick={() => setDropdownStatus(false)}
+            >
               Contact
             </Link>
           </li>
-          {currentUser && currentUser.user.isBlogOwner ? (
+          {currentUser && currentUser.user.isBlogOwner && (
             <li className="header-item">
-              <Link to="/write" className="link">
+              <Link
+                to="/write"
+                className="link"
+                onClick={() => setDropdownStatus(false)}
+              >
                 Write
               </Link>
             </li>
-          ) : null}
+          )}
         </ul>
       </div>
       <div className="header-right">
@@ -53,7 +113,7 @@ export default function Header({ currentUser }) {
           </ul>
         )}
 
-        <i className="header-search-icon fa-solid fa-magnifying-glass"></i>
+        {/* <i className="header-search-icon fa-solid fa-magnifying-glass"></i> */}
       </div>
     </div>
   );
