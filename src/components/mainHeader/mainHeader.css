@@ -30,11 +30,20 @@
 }
 
 @media (max-width: 500px) {
+  .mh-titles {
+    top: 30%;
+    left: 10%;
+  }
+
   .mh-title-lg {
     font-size: 3rem;
   }
-  
+
   .mh-title-sm {
     font-size: 1rem;
+  }
+
+  .mh-img {
+    object-position: 60% -80%;
   }
 }
