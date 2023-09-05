@@ -15,6 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 10px;
   font-size: 1.6rem;
   font-weight: 500;
   font-family: 'Lora', sans-serif;
@@ -40,8 +41,7 @@
 
 .dropdown-trigger {
   display: none;
-  margin-left: 20px;
-  margin-top: 3px;
+  margin-left: 30px;
   font-size: 1.2rem;
   z-index: 1;
   cursor: pointer;

@@ -42,7 +42,7 @@ export default function Header({ currentUser }) {
       </div>
       <div className="header-center">
         <i
-          className={`fa-regular fa-square-caret-down dropdown-trigger ${
+          className={`fa-solid fa-caret-down dropdown-trigger ${
             dropdownStatus && "rotate180"
           }`}
           ref={dropdownTrigger}
