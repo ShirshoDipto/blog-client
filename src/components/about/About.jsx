@@ -3,6 +3,7 @@ import "./about.css";
 
 export default function About() {
   const root = process.env.REACT_APP_ROOT;
+
   return (
     <div className="about-container">
       <div className="about">

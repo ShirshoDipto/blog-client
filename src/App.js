@@ -64,13 +64,10 @@ function App() {
               )
             }
           />
-          <Route
-            path="/about"
-            element={currentUser && <About currentUser={currentUser} />}
-          />
+          <Route path="/about" element={<About currentUser={currentUser} />} />
           <Route
             path="/contact"
-            element={currentUser && <Contact currentUser={currentUser} />}
+            element={<Contact currentUser={currentUser} />}
           />
         </Routes>
       </div>
