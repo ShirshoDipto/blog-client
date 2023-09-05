@@ -43,6 +43,10 @@
   border-radius: 5px;
 }
 
+.signup-input:focus {
+  outline: none;
+}
+
 .signup-submit {
   padding: 10px;
   background-color: white;

@@ -43,6 +43,10 @@
   border-radius: 5px;
 }
 
+.login-input:focus {
+  outline: none;
+}
+
 .login-submit {
   padding: 10px;
   background-color: white;
